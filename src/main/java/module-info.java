@@ -3,6 +3,6 @@ module a3.drawshapes {
     requires javafx.fxml;
 
 
-    opens a3 to javafx.fxml;
-    exports a3;
+    opens drawShapes to javafx.fxml;
+    exports drawShapes;
 }

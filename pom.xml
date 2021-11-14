@@ -61,7 +61,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>a3.drawshapes/a3.drawshapes.HelloApplication</mainClass>
+                            <mainClass>drawShapes.drawshapes/drawShapes.drawshapes.HelloApplication</mainClass>
                         </configuration>
                     </execution>
                 </executions>
