@@ -12,7 +12,7 @@ public class DrawingView extends StackPane implements ModelListener {
     InteractionModel iModel;
 
     public DrawingView() {
-        myCanvas = new Canvas(600, 600);
+        myCanvas = new Canvas(500,500);
         gc = myCanvas.getGraphicsContext2D();
         getChildren().add(myCanvas);
     }

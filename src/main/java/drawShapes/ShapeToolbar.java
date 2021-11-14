@@ -114,6 +114,5 @@ public class ShapeToolbar implements ModelListener {
     @Override
     public void update() {
         changeColorsShape();
-
     }
 }
