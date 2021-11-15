@@ -99,13 +99,11 @@ public class ShapeToolbar extends VBox implements ModelListener {
         } else {
             this.ln.setFill(Color.BLACK);
         }
-
     }
 
     public void setiModel(InteractionModel iModel) {
         this.iModel = iModel;
     }
-
 
     @Override
     public void update() {

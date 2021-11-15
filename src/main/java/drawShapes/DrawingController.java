@@ -8,7 +8,6 @@ public class DrawingController {
     private double y;
     InteractionModel iModel;
 
-
     public DrawingController() {
     }
 

@@ -18,25 +18,14 @@ public class MainUI extends BorderPane {
         this.colors = new ColourToolbar();
         this.canvas = new DrawingView();
 
-//        this.getChildren().addAll(shapes, canvas, colors);
         canvasMini.getChildren().addAll(canvas, mini);
-
         canvasMini.setAlignment(mini, Pos.TOP_LEFT);
+
         this.setLeft(shapes);
         this.setCenter(canvasMini);
         this.setRight(colors);
 
-//        this.widthProperty().addListener((observable, oldVal, newVal) -> {
-//            this.setWidth(newVal.doubleValue());
-//            this.setWidth(newVal.doubleValue());
-//        });
-//        this.heightProperty().addListener((observable, oldVal, newVal) -> {
-//            this.setHeight(newVal.doubleValue());
-//            this.setHeight(newVal.doubleValue());
-//        });
     }
-
-
 
     public DrawingView getCanvas() {
         return canvas;
