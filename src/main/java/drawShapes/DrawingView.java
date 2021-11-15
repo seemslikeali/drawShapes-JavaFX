@@ -15,6 +15,17 @@ public class DrawingView extends StackPane implements ModelListener {
         myCanvas = new Canvas(500,500);
         gc = myCanvas.getGraphicsContext2D();
         getChildren().add(myCanvas);
+
+        this.widthProperty().addListener((observable, oldVal, newVal) -> {
+            myCanvas.setWidth(newVal.doubleValue());
+            this.setWidth(newVal.doubleValue());
+            Draw();
+        });
+        this.heightProperty().addListener((observable, oldVal, newVal) -> {
+            myCanvas.setHeight(newVal.doubleValue());
+            this.setHeight(newVal.doubleValue());
+            Draw();
+        });
     }
 
 

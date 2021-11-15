@@ -1,10 +1,10 @@
 package drawShapes;
 
 import javafx.scene.Node;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 
-public class MainUI extends Pane {
+public class MainUI extends BorderPane {
     HBox container;
     ShapeToolbar shapes;
     ColourToolbar colors;
