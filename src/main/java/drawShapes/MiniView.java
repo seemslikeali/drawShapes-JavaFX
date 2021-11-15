@@ -2,50 +2,36 @@ package drawShapes;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
-public class DrawingView extends Pane implements ModelListener {
-    Canvas myCanvas;
+public class MiniView extends DrawingView {
+    Canvas miniCanvas;
     GraphicsContext gc;
     DrawingModel model;
     InteractionModel iModel;
 
-    public DrawingView() {
-        myCanvas = new Canvas(500,500);
 
-        gc = myCanvas.getGraphicsContext2D();
-        getChildren().add(myCanvas);
-        this.widthProperty().addListener((observable, oldVal, newVal) -> {
-            myCanvas.setWidth(newVal.doubleValue());
-            this.setWidth(newVal.doubleValue());
-//            Draw();
-        });
-
-        this.heightProperty().addListener((observable, oldVal, newVal) -> {
-            myCanvas.setHeight(newVal.doubleValue());
-            this.setHeight(newVal.doubleValue());
-//            Draw();
-        });
+    MiniView(){
+        setStyle("-fx-background-color: LIGHTGRAY");
+        miniCanvas = new Canvas(10,10);
+        setMaxHeight(myCanvas.getHeight()/5);
+        setMaxWidth(myCanvas.getHeight()/5);
+        gc = miniCanvas.getGraphicsContext2D();
     }
-
 
     public void Draw(){
         gc.clearRect(0, 0, myCanvas.getWidth(), myCanvas.getHeight());
         model.shapelist.forEach(item -> {
             switch (item) {
-                case XCircle e -> this.drawCIRCLE(e.x, e.y, e.height, e.width, e.colour);
-                case XOval e -> this.drawOVAL(e.x, e.y, e.height, e.width, e.colour);
-                case XSquare e -> this.drawSQUARE(e.x, e.y, e.height, e.width, e.colour);
-                case XRectangle e -> this.drawRECTANGLE(e.x, e.y, e.height, e.width, e.colour);
-                case XLine e -> this.drawLINE(e.x, e.y, e.height, e.width, e.colour);
+                case XCircle e -> this.drawCIRCLE(e.x, e.y, e.height/5, e.width/5, e.colour);
+                case XOval e -> this.drawOVAL(e.x, e.y, e.height/5, e.width/5, e.colour);
+                case XSquare e -> this.drawSQUARE(e.x, e.y, e.height/5, e.width/5, e.colour);
+                case XRectangle e -> this.drawRECTANGLE(e.x, e.y, e.height/5, e.width/5, e.colour);
+                case XLine e -> this.drawLINE(e.x, e.y, e.height/5, e.width/5, e.colour);
                 case XShape di -> System.out.println("Error: fell through to DrawingItem");
             }
         });
-
-
     }
-
     private void drawCIRCLE(double x, double y, double height, double width, Colour colour) {
         gc.setFill(getColor(colour));
         gc.fillOval(x, y, width, width);
@@ -83,12 +69,9 @@ public class DrawingView extends Pane implements ModelListener {
         return result;
     }
 
-    public void setModel(DrawingModel newModel) {
-        model = newModel;
-    }
-
     @Override
     public void update() {
         this.Draw();
     }
+
 }

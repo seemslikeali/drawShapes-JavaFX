@@ -1,26 +1,42 @@
 package drawShapes;
 
-import javafx.scene.Node;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
+import javafx.geometry.Pos;
+import javafx.scene.layout.*;
 
 public class MainUI extends BorderPane {
-    HBox container;
+    StackPane canvasMini;
     ShapeToolbar shapes;
     ColourToolbar colors;
     DrawingView canvas;
+    MiniView mini;
 
-    public MainUI() {
-        this.container = new HBox();
+    public MainUI(MiniView m) {
+
+        this.canvasMini = new StackPane();
+        this.mini = m;
         this.shapes = new ShapeToolbar();
         this.colors = new ColourToolbar();
         this.canvas = new DrawingView();
+
+//        this.getChildren().addAll(shapes, canvas, colors);
+        canvasMini.getChildren().addAll(canvas, mini);
+
+        canvasMini.setAlignment(mini, Pos.TOP_LEFT);
+        this.setLeft(shapes);
+        this.setCenter(canvasMini);
+        this.setRight(colors);
+
+//        this.widthProperty().addListener((observable, oldVal, newVal) -> {
+//            this.setWidth(newVal.doubleValue());
+//            this.setWidth(newVal.doubleValue());
+//        });
+//        this.heightProperty().addListener((observable, oldVal, newVal) -> {
+//            this.setHeight(newVal.doubleValue());
+//            this.setHeight(newVal.doubleValue());
+//        });
     }
 
 
-    public Node getView() {
-        return container;
-    }
 
     public DrawingView getCanvas() {
         return canvas;

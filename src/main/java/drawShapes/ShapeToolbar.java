@@ -2,14 +2,14 @@ package drawShapes;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 
-public class ShapeToolbar implements ModelListener {
-    VBox shapes;
+public class ShapeToolbar extends VBox implements ModelListener {
     Button rect, square, circle, oval, line;
     Rectangle rectangle;
     Rectangle sqr;
@@ -19,7 +19,7 @@ public class ShapeToolbar implements ModelListener {
     InteractionModel iModel;
 
     public ShapeToolbar() {
-        this.shapes = new VBox();
+
         this.rectangle = new Rectangle(30,20);
         this.rect = new Button("Rect",rectangle);
         rect.contentDisplayProperty().setValue(ContentDisplay.TOP);
@@ -44,28 +44,28 @@ public class ShapeToolbar implements ModelListener {
 
 
         rect.setMaxWidth(Double.MAX_VALUE);
-        rect.prefHeightProperty().bind(shapes.heightProperty());
+        rect.prefHeightProperty().bind(this.heightProperty());
         rect.setOnAction(e -> {
             this.iModel.setSelectedShape(Shape.RECTANGLE);
         });
 
         square.setMaxWidth(Double.MAX_VALUE);
-        square.prefHeightProperty().bind(shapes.heightProperty());
+        square.prefHeightProperty().bind(this.heightProperty());
         square.setOnAction(e -> this.iModel.setSelectedShape(Shape.SQUARE));
 
         circle.setMaxWidth(Double.MAX_VALUE);
-        circle.prefHeightProperty().bind(shapes.heightProperty());
+        circle.prefHeightProperty().bind(this.heightProperty());
         circle.setOnAction(e -> this.iModel.setSelectedShape(Shape.CIRCLE));
 
         oval.setMaxWidth(Double.MAX_VALUE);
-        oval.prefHeightProperty().bind(shapes.heightProperty());
+        oval.prefHeightProperty().bind(this.heightProperty());
         oval.setOnAction(e -> this.iModel.setSelectedShape(Shape.OVAL));
 
         line.setMaxWidth(Double.MAX_VALUE);
-        line.prefHeightProperty().bind(shapes.heightProperty());
+        line.prefHeightProperty().bind(this.heightProperty());
         line.setOnAction(e -> this.iModel.setSelectedShape(Shape.LINE));
 
-        shapes.getChildren().addAll(rect,square,circle,oval,line);
+        this.getChildren().addAll(rect,square,circle,oval,line);
 
     }
 
@@ -102,14 +102,10 @@ public class ShapeToolbar implements ModelListener {
 
     }
 
-
     public void setiModel(InteractionModel iModel) {
         this.iModel = iModel;
     }
 
-    public VBox getShapes() {
-        return shapes;
-    }
 
     @Override
     public void update() {
